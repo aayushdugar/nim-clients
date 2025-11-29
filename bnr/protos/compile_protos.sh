@@ -20,12 +20,19 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-import os
-import sys
-from . import eyecontact_pb2
 
-pwd = os.path.join(os.path.dirname(__file__))
-sys.path.insert(0, pwd)
-from . import eyecontact_pb2_grpc
+# This script compiles Protocol Buffer (protobuf) definitions for NVIDIA
+# Maxine Studio Voice on a Linux Client.
+#
+# Execute the script using `./compile_proto.sh`
+#
+# For more details, refer to README.md
 
-sys.path.remove(pwd)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+PROTOS_DIR=$SCRIPT_DIR/proto/nvidia/maxine/bnr/v1
+OUT_DIR=$SCRIPT_DIR/../interfaces/bnr
+
+python3 -m grpc_tools.protoc -I=$PROTOS_DIR \
+                             --python_out=$OUT_DIR \
+                             --grpc_python_out=$OUT_DIR \
+                             $PROTOS_DIR/bnr.proto
