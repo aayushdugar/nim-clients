@@ -30,7 +30,7 @@ from typing import Iterator
 sys.path.append(os.path.join(os.getcwd(), "../interfaces/studio_voice"))
 # Importing gRPC compiler auto-generated maxine studiovoice library
 import studiovoice_pb2  # noqa: E402
-import studiovoice_pb2_grpc  # noqa: E402
+import studiovoice_pb2_grpcp  # noqa: E402
 
 
 def read_file_content(file_path: os.PathLike) -> None:
